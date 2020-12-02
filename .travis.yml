@@ -20,7 +20,6 @@ python:
 install:
   - pip install -r requirements.txt
 script:
-  - cd decide
-  - ./manage.py test authentication
-  - ./manage.py test census
+  - python ./manage.py test authentication
+  - python ./manage.py test census
  
