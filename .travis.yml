@@ -8,7 +8,12 @@ matrix:
       postgresql: "9.4"
     - addons:
       postgresql: "9.6"
+
+env:
+- DJANGO=2.0 DB=postgres
+
 before_script:
+  - cp local_settings.travis.py local_settings.py
   - psql -U postgres -c "create user decide password 'decide'"
   - psql -U postgres -c "create database test_decide owner decide"
   - psql -U postgres -c "ALTER USER decide CREATEDB"
@@ -16,6 +21,9 @@ language: python
 python:
   - "3.6"
   - "3.8"
+
+before_install:
+  - cd decide
 
 install:
   - pip install -r requirements.txt
